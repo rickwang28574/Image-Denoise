@@ -3,18 +3,18 @@ import numpy as np
 import math
 
 def psnr(img1, img2):
-    # 归一化图像像素值到 [0, 1] 范围内的浮点数
+    # Normalizes image pixel values to floats in the range [0, 1]
     img1 = img1.astype(np.float32) / 255.0
     img2 = img2.astype(np.float32) / 255.0
 
-    # 计算 MSE
+    # Calculate MSE
     mse = np.mean((img1 - img2) ** 2)
 
-    # 如果 MSE 为 0，则 PSNR 为正无穷
+    # If MSE is 0, PSNR is positive infinity
     if mse == 0:
         return float('inf')
 
-    # 计算 PSNR 值
+    # Calculate the PSNR value
     PIXEL_MAX = 1.0
     psnr = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
     return psnr
